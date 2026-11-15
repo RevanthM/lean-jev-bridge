@@ -1,0 +1,10 @@
+name = "lean-jev-bridge"
+version = "0.1.0"
+defaultTargets = ["bridge", "Bridge"]
+
+[[lean_lib]]
+name = "Bridge"
+
+[[lean_exe]]
+name = "bridge"
+root = "Main"

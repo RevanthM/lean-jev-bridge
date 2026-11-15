@@ -1,0 +1,20 @@
+{
+  "model": "jev-1.14.0",
+  "answers": {
+    "action": {
+      "type": "choice",
+      "choice": "refund",
+      "confidence": 0.985,
+      "probabilities": {"refund": 0.99, "review": 0.009, "none": 0.001}
+    },
+    "support": {"type": "noul", "noul": 0.995},
+    "risk": {
+      "type": "score",
+      "score": 0.011,
+      "confidence": 0.98,
+      "legend": {"0": "No conflict is evident", "1": "Some ambiguity", "2": "Clear conflict"},
+      "probabilities": {"0": 0.99, "1": 0.009, "2": 0.001}
+    }
+  },
+  "usage": {"input_tokens": 0, "output_tokens": 0}
+}

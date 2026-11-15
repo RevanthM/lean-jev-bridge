@@ -1,0 +1,15 @@
+{
+  "model": "jev-1.14.0",
+  "policyId": "synthetic-refund-v1",
+  "sourceId": "synthetic-ledger-TX42-v1",
+  "quote": "TX42 was charged twice; the duplicate amount is USD 25.00.",
+  "factId": "duplicate-charge-25-reviewed",
+  "choice": "refund",
+  "refundBps": 9900,
+  "reviewBps": 90,
+  "noneBps": 10,
+  "supportNoulBps": 9950,
+  "risk0Bps": 9900,
+  "risk1Bps": 90,
+  "risk2Bps": 10
+}
