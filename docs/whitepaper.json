@@ -5,10 +5,21 @@
   "subtitle": "An executable Lean bridge for evidence binding, explicit abstention and reproducible synthetic decisions",
   "paperVersion": "2.0",
   "revisedOn": "2026-11-16",
-  "authors": ["Revanth Matha", "Matha Labs"],
+  "authors": [
+    "Revanth Matha",
+    "Matha Labs"
+  ],
   "codeRef": "2b8b8af1d0322d449f08f6492fd6476632c07a92",
   "abstract": "Software that consumes a learned judgment needs to distinguish an answer that fits its schema from one that satisfies an applicable policy. TypeSafe AI's Jev makes the first boundary explicit through typed decisions and probabilities. This paper investigates the second: whether a small Lean program can make acceptance conditions precise and replayable while retaining uncertainty and provenance. We implement a fixed synthetic refund policy, a structured proposal packet, a Python adapter for Choice, Noul and Score responses, and a deterministic Lean evaluator returning accepted, review or invalid. The published source contains 12 named theorems, 24 compile-time regression examples and 18 Python adapter tests. Five additional recorded scenarios show acceptance, altered evidence, insufficient probability support, an unrecognized model identifier and excessive rubric risk. These are authored fixtures executed by the published program; they are not observed Jev predictions or an accuracy benchmark. The proofs establish consequences of the encoded predicates, including the impossibility of overriding a false reviewed-fact flag or an invalid evidence certificate through probabilities. They do not establish source authenticity, semantic entailment, policy completeness or real-world validity. We relate this separation to Lexifina's source-certificate approach, describe the adapter and execution trust boundaries, and specify a prospective empirical study that compares selective error, coverage and repeatability under frozen policies. The contribution is an inspectable verification boundary and reproducibility record, with the conditions needed for stronger claims stated explicitly.",
-  "keywords": ["Lean 4", "typed decisions", "Jev", "formal verification", "selective prediction", "evidence provenance", "deterministic evaluation"],
+  "keywords": [
+    "Lean 4",
+    "typed decisions",
+    "Jev",
+    "formal verification",
+    "selective prediction",
+    "evidence provenance",
+    "deterministic evaluation"
+  ],
   "contributions": [
     "An executable policy/packet separation with explicit acceptance, review and invalid-input outcomes for one closed synthetic refund fixture.",
     "Twelve named Lean theorems, 24 Lean regression examples and 18 Python tests covering the acceptance contract and the response-normalization boundary.",
@@ -16,10 +27,26 @@
   ],
   "scope": "This is an independent research verifier around a TypeSafe-shaped interface, pinned to the original Jev 1.14.0 and Lean 4.35.0 snapshot. It contains a reviewed fictional duplicate-charge record, no trained neural model and no live-model performance evaluation. Acceptance is a result of the encoded synthetic policy and does not execute a refund or certify any healthcare, legal, municipal or tax decision.",
   "metrics": [
-    {"value": "12", "label": "Named Lean theorems", "detail": "Quantified statements about the encoded evaluator, not a completeness or production-accuracy measure."},
-    {"value": "24", "label": "Lean regression examples", "detail": "Compile-time checks of authored positive and negative cases."},
-    {"value": "18", "label": "Python adapter tests", "detail": "Response validation, quantization and selected executable-boundary checks."},
-    {"value": "5", "label": "Recorded executions", "detail": "Synthetic packets evaluated offline; no Jev inference calls. These are separate from the 24 Lean examples."}
+    {
+      "value": "12",
+      "label": "Named Lean theorems",
+      "detail": "Quantified statements about the encoded evaluator, not a completeness or production-accuracy measure."
+    },
+    {
+      "value": "24",
+      "label": "Lean regression examples",
+      "detail": "Compile-time checks of authored positive and negative cases."
+    },
+    {
+      "value": "18",
+      "label": "Python adapter tests",
+      "detail": "Response validation, quantization and selected executable-boundary checks."
+    },
+    {
+      "value": "5",
+      "label": "Recorded executions",
+      "detail": "Synthetic packets evaluated offline; no Jev inference calls. These are separate from the 24 Lean examples."
+    }
   ],
   "sections": [
     {
@@ -50,12 +77,32 @@
       ],
       "table": {
         "title": "Table 1. Four properties requiring different evidence",
-        "columns": ["Property", "What can establish it", "Remaining question"],
+        "columns": [
+          "Property",
+          "What can establish it",
+          "Remaining question"
+        ],
         "rows": [
-          ["Schema conformity", "Declared options and field validation", "Does the selected option describe this case?"],
-          ["Replay determinism", "A pure evaluator with equal policy and packet values", "Will another neural call produce equal values?"],
-          ["Formal acceptance validity", "A checked theorem relating acceptance to explicit predicates", "Do the predicates capture every intended rule?"],
-          ["Real-world correctness", "Reliable sources, correct interpretation and domain evaluation", "How often do accepted cases remain wrong in practice?"]
+          [
+            "Schema conformity",
+            "Declared options and field validation",
+            "Does the selected option describe this case?"
+          ],
+          [
+            "Replay determinism",
+            "A pure evaluator with equal policy and packet values",
+            "Will another neural call produce equal values?"
+          ],
+          [
+            "Formal acceptance validity",
+            "A checked theorem relating acceptance to explicit predicates",
+            "Do the predicates capture every intended rule?"
+          ],
+          [
+            "Real-world correctness",
+            "Reliable sources, correct interpretation and domain evaluation",
+            "How often do accepted cases remain wrong in practice?"
+          ]
         ],
         "caption": "Conceptual distinctions used throughout this paper. The implemented theorem establishes formal consequences, while the empirical question remains open. [8, 9, 12]"
       }
@@ -73,10 +120,22 @@
         "kind": "pipeline",
         "title": "Figure 1. The implemented boundary from response to decision",
         "nodes": [
-          {"label": "Typed proposal", "detail": "Authored response or optional TypeSafe response"},
-          {"label": "Python adapter", "detail": "Validate structure and convert numeric representation"},
-          {"label": "Lean evaluator", "detail": "Compare packet with the local reviewed policy"},
-          {"label": "Decision record", "detail": "Accepted, review or invalid; save exact inputs"}
+          {
+            "label": "Typed proposal",
+            "detail": "Authored response or optional TypeSafe response"
+          },
+          {
+            "label": "Python adapter",
+            "detail": "Validate structure and convert numeric representation"
+          },
+          {
+            "label": "Lean evaluator",
+            "detail": "Compare packet with the local reviewed policy"
+          },
+          {
+            "label": "Decision record",
+            "detail": "Accepted, review or invalid; save exact inputs"
+          }
         ],
         "caption": "The published evaluation uses authored responses and packets. The optional live adapter exists but supplied no measured data for this paper. Policy review and source authenticity are inputs to this path, not conclusions of it. [12, 13, 15]"
       }
@@ -96,13 +155,37 @@
       },
       "table": {
         "title": "Table 2. Implemented gates and their evidence limits",
-        "columns": ["Gate", "Implemented check", "Not established"],
+        "columns": [
+          "Gate",
+          "Implemented check",
+          "Not established"
+        ],
         "rows": [
-          ["Model and mass", "Pinned identifier; declared action; integer mass totals", "Provider authenticity or probability calibration"],
-          ["Certificate", "Exact local identifier and quote equality", "Truth or contextual sufficiency of the source sentence"],
-          ["Reviewed fact", "External flag equals true", "The correctness of the external review"],
-          ["Policy date", "Inclusive natural-number interval", "Complete calendar and legal applicability semantics"],
-          ["Numerical support", "Choice and Noul >=9800; risk numerator <=500", "An observed bound on accepted-case error"]
+          [
+            "Model and mass",
+            "Pinned identifier; declared action; integer mass totals",
+            "Provider authenticity or probability calibration"
+          ],
+          [
+            "Certificate",
+            "Exact local identifier and quote equality",
+            "Truth or contextual sufficiency of the source sentence"
+          ],
+          [
+            "Reviewed fact",
+            "External flag equals true",
+            "The correctness of the external review"
+          ],
+          [
+            "Policy date",
+            "Inclusive natural-number interval",
+            "Complete calendar and legal applicability semantics"
+          ],
+          [
+            "Numerical support",
+            "Choice and Noul >=9800; risk numerator <=500",
+            "An observed bound on accepted-case error"
+          ]
         ],
         "caption": "A summary of the pinned definitions, not a complete policy for real refunds. Thresholds are synthetic design constants. [12]"
       }
@@ -148,13 +231,43 @@
       ],
       "table": {
         "title": "Table 3. Mechanism checks with one intended change per case",
-        "columns": ["Case", "Changed input", "Recorded result", "Explanatory failed gate"],
+        "columns": [
+          "Case",
+          "Changed input",
+          "Recorded result",
+          "Explanatory failed gate"
+        ],
         "rows": [
-          ["Supported refund", "None; original synthetic packet", "accepted; exit 0", "None"],
-          ["Altered evidence", "Quote amount 25.00 becomes 250.00", "review; exit 0", "Exact certificate"],
-          ["Weak Choice", "Refund mass 99% becomes 97%", "review; exit 0", "Choice minimum 98%"],
-          ["Unpinned model", "Model field becomes jev-latest", "invalid; exit 2", "Pinned model identifier"],
-          ["Elevated risk", "Rubric expectation 0.011 becomes 0.08", "review; exit 0", "Maximum expectation 0.05"]
+          [
+            "Supported refund",
+            "None; original synthetic packet",
+            "accepted; exit 0",
+            "None"
+          ],
+          [
+            "Altered evidence",
+            "Quote amount 25.00 becomes 250.00",
+            "review; exit 0",
+            "Exact certificate"
+          ],
+          [
+            "Weak Choice",
+            "Refund mass 99% becomes 97%",
+            "review; exit 0",
+            "Choice minimum 98%"
+          ],
+          [
+            "Unpinned model",
+            "Model field becomes jev-latest",
+            "invalid; exit 2",
+            "Pinned model identifier"
+          ],
+          [
+            "Elevated risk",
+            "Rubric expectation 0.011 becomes 0.08",
+            "review; exit 0",
+            "Maximum expectation 0.05"
+          ]
         ],
         "caption": "Recorded outputs from the five downloadable packets. Their engineered differences exercise independent gate requirements; the word independent here describes separate rules, not statistical independence of model predictions. [16]"
       }
@@ -181,10 +294,22 @@
         "kind": "pipeline",
         "title": "Figure 2. Reproduce an execution without a model account",
         "nodes": [
-          {"label": "Pin source", "detail": "Exact bridge commit and Lean toolchain"},
-          {"label": "Verify packet", "detail": "Download JSON and compare SHA-256"},
-          {"label": "Build and execute", "detail": "Run the local bridge with that packet"},
-          {"label": "Compare record", "detail": "Decision, output payload and exit code"}
+          {
+            "label": "Pin source",
+            "detail": "Exact bridge commit and Lean toolchain"
+          },
+          {
+            "label": "Verify packet",
+            "detail": "Download JSON and compare SHA-256"
+          },
+          {
+            "label": "Build and execute",
+            "detail": "Run the local bridge with that packet"
+          },
+          {
+            "label": "Compare record",
+            "detail": "Decision, output payload and exit code"
+          }
         ],
         "caption": "A reproduction procedure for the existing synthetic artifact. It checks the saved decision path and makes no new Jev request. Hashes identify artifacts; they do not independently authenticate the underlying fictional record. [15, 16]"
       }
@@ -200,35 +325,163 @@
       ],
       "table": {
         "title": "Table 4. Proposed comparisons and evidence to collect",
-        "columns": ["Comparison", "Hold fixed", "Measure"],
+        "columns": [
+          "Comparison",
+          "Hold fixed",
+          "Measure"
+        ],
         "rows": [
-          ["Proposal rule versus formal gates", "Cases, saved responses and decision labels", "Accepted-case error, coverage and review workload"],
-          ["Ordinary rules versus Lean encoding", "The intended rule specification", "Differential disagreement, maintenance errors and proof obligations"],
-          ["Certificate and gate ablations", "Model responses and test cases", "Which errors each requirement excludes"],
-          ["Repeated inference versus saved replay", "Request, model version and policy", "Response variation, decision variation and exact replay agreement"]
+          [
+            "Proposal rule versus formal gates",
+            "Cases, saved responses and decision labels",
+            "Accepted-case error, coverage and review workload"
+          ],
+          [
+            "Ordinary rules versus Lean encoding",
+            "The intended rule specification",
+            "Differential disagreement, maintenance errors and proof obligations"
+          ],
+          [
+            "Certificate and gate ablations",
+            "Model responses and test cases",
+            "Which errors each requirement excludes"
+          ],
+          [
+            "Repeated inference versus saved replay",
+            "Request, model version and policy",
+            "Response variation, decision variation and exact replay agreement"
+          ]
         ],
         "caption": "Prospective study design. No row reports an experiment already performed, and no performance improvement is assumed."
       }
     }
   ],
   "references": [
-    {"id": 1, "title": "Introducing System One Models & Jev", "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev", "detail": "TypeSafe AI, September 15, 2026. Public descriptions of the model architecture direction, parallel sampler and RLCD; vendor claims, not a reproducible training specification.", "accessed": "2026-11-16"},
-    {"id": 2, "title": "Introduction - TypeSafe", "url": "https://docs.typesafe.ai/introduction", "detail": "Typed state/question interface, primitives and independent composition. Used for interface description only.", "accessed": "2026-11-16"},
-    {"id": 3, "title": "Models - TypeSafe", "url": "https://docs.typesafe.ai/models", "detail": "Jev 1.14.0 model identifier, primitive support and moving-alias semantics. The implementation retains its original pinned snapshot.", "accessed": "2026-11-16"},
-    {"id": 4, "title": "Confidence - TypeSafe", "url": "https://docs.typesafe.ai/confidence", "detail": "Distribution-derived confidence, its distinction from probability and the fixed-cardinality Choice relationship.", "accessed": "2026-11-16"},
-    {"id": 5, "title": "Score - TypeSafe", "url": "https://docs.typesafe.ai/primitives/score", "detail": "Ordered rubric levels, probability-weighted expected score and distributional interpretation.", "accessed": "2026-11-16"},
-    {"id": 6, "title": "Noul - TypeSafe", "url": "https://docs.typesafe.ai/primitives/noul", "detail": "Probability of a yes answer; no separate confidence field.", "accessed": "2026-11-16"},
-    {"id": 7, "title": "System One - TypeSafe HTTP API", "url": "https://docs.typesafe.ai/api/system-one", "detail": "POST /v1/systemone request/response structure and returned model identifier. The paper reports no live requests.", "accessed": "2026-11-16"},
-    {"id": 8, "title": "Self-consistency: choices - TypeSafe", "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook", "detail": "A vendor experiment separating repeated-answer stability from correctness. No vendor benchmark number is adopted as a bridge result.", "accessed": "2026-11-16"},
-    {"id": 9, "title": "Theorem Proving in Lean 4: Propositions and Proofs", "url": "https://lean-lang.org/theorem_proving_in_lean4/Propositions-and-Proofs/", "detail": "Propositions as types and the relationship between a theorem statement and its proof term.", "accessed": "2026-11-16"},
-    {"id": 10, "title": "Theorem Proving in Lean 4: Axioms and Computation", "url": "https://lean-lang.org/theorem_proving_in_lean4/Axioms-and-Computation/", "detail": "Foundational assumptions and the distinction between logical content and compiled computation.", "accessed": "2026-11-16"},
-    {"id": 11, "title": "Formalizing all US case law in Lean", "url": "https://lexifina.com/blog/formalizing-all-us-case-law-in-lean", "detail": "Lexifina, November 13, 2026, especially sections 1 and 2. Source certificates and formal authority checks motivate the separation; its results are not reproduced here.", "accessed": "2026-11-16"},
-    {"id": 12, "title": "Lean Jev Bridge: Bridge/Kernel.lean", "url": "https://github.com/RevanthM/lean-jev-bridge/blob/2b8b8af1d0322d449f08f6492fd6476632c07a92/Bridge/Kernel.lean", "detail": "Exact published source for Policy, Packet, acceptance predicates, evaluator, 12 named theorems and synthetic bundle.", "accessed": "2026-11-16"},
-    {"id": 13, "title": "Lean Jev Bridge: scripts/adapter.py", "url": "https://github.com/RevanthM/lean-jev-bridge/blob/2b8b8af1d0322d449f08f6492fd6476632c07a92/scripts/adapter.py", "detail": "Pinned Python response validation, normalization, basis-point conversion and optional live adapter.", "accessed": "2026-11-16"},
-    {"id": 14, "title": "Lean Jev Bridge: Bridge/Tests.lean", "url": "https://github.com/RevanthM/lean-jev-bridge/blob/2b8b8af1d0322d449f08f6492fd6476632c07a92/Bridge/Tests.lean", "detail": "The 24 authored compile-time regression examples; no clinical or real-world test corpus.", "accessed": "2026-11-16"},
-    {"id": 15, "title": "Lean Jev Bridge: Main.lean", "url": "https://github.com/RevanthM/lean-jev-bridge/blob/2b8b8af1d0322d449f08f6492fd6476632c07a92/Main.lean", "detail": "Normalized JSON parsing, bundled-policy evaluation, output payload and exit-code semantics.", "accessed": "2026-11-16"},
-    {"id": 16, "title": "Matha Labs: recorded Jev-bridge executions", "url": "https://www.mathalabs.com/research/jev-replay.json", "detail": "Five synthetic packets, pinned source reference, kernel/packet hashes, explanatory checks and saved executable transcripts.", "accessed": "2026-11-16"},
-    {"id": 17, "title": "Lean Jev Bridge: scripts/test_adapter.py", "url": "https://github.com/RevanthM/lean-jev-bridge/blob/2b8b8af1d0322d449f08f6492fd6476632c07a92/scripts/test_adapter.py", "detail": "The 18 Python adapter tests, including selected process calls to the Lean executable.", "accessed": "2026-11-16"},
-    {"id": 18, "title": "Pre-parsed value extraction - TypeSafe", "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook", "detail": "Code-owned candidate extraction followed by model selection; cited as a possible extension, not an implemented arbitrary-span verifier.", "accessed": "2026-11-16"}
+    {
+      "id": 1,
+      "title": "Introducing System One Models & Jev",
+      "url": "https://typesafe.ai/blog/introducing-system-one-models-and-jev",
+      "detail": "TypeSafe AI, September 15, 2026. Public descriptions of the model architecture direction, parallel sampler and RLCD; vendor claims, not a reproducible training specification.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 2,
+      "title": "Introduction - TypeSafe",
+      "url": "https://docs.typesafe.ai/introduction",
+      "detail": "Typed state/question interface, primitives and independent composition. Used for interface description only.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 3,
+      "title": "Models - TypeSafe",
+      "url": "https://docs.typesafe.ai/models",
+      "detail": "Jev 1.14.0 model identifier, primitive support and moving-alias semantics. The implementation retains its original pinned snapshot.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 4,
+      "title": "Confidence - TypeSafe",
+      "url": "https://docs.typesafe.ai/confidence",
+      "detail": "Distribution-derived confidence, its distinction from probability and the fixed-cardinality Choice relationship.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 5,
+      "title": "Score - TypeSafe",
+      "url": "https://docs.typesafe.ai/primitives/score",
+      "detail": "Ordered rubric levels, probability-weighted expected score and distributional interpretation.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 6,
+      "title": "Noul - TypeSafe",
+      "url": "https://docs.typesafe.ai/primitives/noul",
+      "detail": "Probability of a yes answer; no separate confidence field.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 7,
+      "title": "System One - TypeSafe HTTP API",
+      "url": "https://docs.typesafe.ai/api/system-one",
+      "detail": "POST /v1/systemone request/response structure and returned model identifier. The paper reports no live requests.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 8,
+      "title": "Self-consistency: choices - TypeSafe",
+      "url": "https://docs.typesafe.ai/cookbooks/consistency_choice_cookbook",
+      "detail": "A vendor experiment separating repeated-answer stability from correctness. No vendor benchmark number is adopted as a bridge result.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 9,
+      "title": "Theorem Proving in Lean 4: Propositions and Proofs",
+      "url": "https://lean-lang.org/theorem_proving_in_lean4/Propositions-and-Proofs/",
+      "detail": "Propositions as types and the relationship between a theorem statement and its proof term.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 10,
+      "title": "Theorem Proving in Lean 4: Axioms and Computation",
+      "url": "https://lean-lang.org/theorem_proving_in_lean4/Axioms-and-Computation/",
+      "detail": "Foundational assumptions and the distinction between logical content and compiled computation.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 11,
+      "title": "Formalizing all US case law in Lean",
+      "url": "https://lexifina.com/blog/formalizing-all-us-case-law-in-lean",
+      "detail": "Lexifina, November 13, 2026, especially sections 1 and 2. Source certificates and formal authority checks motivate the separation; its results are not reproduced here.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 12,
+      "title": "Lean Jev Bridge: Bridge/Kernel.lean",
+      "url": "https://github.com/RevanthM/lean-jev-bridge/blob/2b8b8af1d0322d449f08f6492fd6476632c07a92/Bridge/Kernel.lean",
+      "detail": "Exact published source for Policy, Packet, acceptance predicates, evaluator, 12 named theorems and synthetic bundle.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 13,
+      "title": "Lean Jev Bridge: scripts/adapter.py",
+      "url": "https://github.com/RevanthM/lean-jev-bridge/blob/2b8b8af1d0322d449f08f6492fd6476632c07a92/scripts/adapter.py",
+      "detail": "Pinned Python response validation, normalization, basis-point conversion and optional live adapter.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 14,
+      "title": "Lean Jev Bridge: Bridge/Tests.lean",
+      "url": "https://github.com/RevanthM/lean-jev-bridge/blob/2b8b8af1d0322d449f08f6492fd6476632c07a92/Bridge/Tests.lean",
+      "detail": "The 24 authored compile-time regression examples; no clinical or real-world test corpus.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 15,
+      "title": "Lean Jev Bridge: Main.lean",
+      "url": "https://github.com/RevanthM/lean-jev-bridge/blob/2b8b8af1d0322d449f08f6492fd6476632c07a92/Main.lean",
+      "detail": "Normalized JSON parsing, bundled-policy evaluation, output payload and exit-code semantics.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 16,
+      "title": "Matha Labs: recorded Jev-bridge executions",
+      "url": "https://www.mathalabs.com/research/jev-replay.json",
+      "detail": "Five synthetic packets, pinned source reference, kernel/packet hashes, explanatory checks and saved executable transcripts.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 17,
+      "title": "Lean Jev Bridge: scripts/test_adapter.py",
+      "url": "https://github.com/RevanthM/lean-jev-bridge/blob/2b8b8af1d0322d449f08f6492fd6476632c07a92/scripts/test_adapter.py",
+      "detail": "The 18 Python adapter tests, including selected process calls to the Lean executable.",
+      "accessed": "2026-11-16"
+    },
+    {
+      "id": 18,
+      "title": "Pre-parsed value extraction - TypeSafe",
+      "url": "https://docs.typesafe.ai/cookbooks/pre_parsed_value_extraction_cookbook",
+      "detail": "Code-owned candidate extraction followed by model selection; cited as a possible extension, not an implemented arbitrary-span verifier.",
+      "accessed": "2026-11-16"
+    }
   ]
 }
