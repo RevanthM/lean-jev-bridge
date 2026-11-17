@@ -68,7 +68,7 @@ class Diagram(Flowable):
 
 class PaperDoc(BaseDocTemplate):
  def __init__(self,path,paper):
-  super().__init__(str(path),pagesize=(W,H),leftMargin=LEFT,rightMargin=RIGHT,topMargin=TOP,bottomMargin=BOTTOM,title=paper['title'],author='; '.join(paper['authors']),subject=paper['subtitle'],pageCompression=1)
+  super().__init__(str(path),pagesize=(W,H),leftMargin=LEFT,rightMargin=RIGHT,topMargin=TOP,bottomMargin=BOTTOM,title=paper['title'],author='; '.join(paper['authors']),subject=paper['subtitle'],pageCompression=1,invariant=1)
   self.paper=paper;self.addPageTemplates(PageTemplate('body',[Frame(LEFT,BOTTOM,CW,H-TOP-BOTTOM,id='normal')],onPage=self.page))
  def page(self,c,doc):
   c.saveState();c.setStrokeColor(RULE);c.line(LEFT,H-40,W-RIGHT,H-40)
@@ -97,7 +97,7 @@ def render_pdf(paper,path):
   if section.get('formula'):
    f=section['formula'];story += [P(f['expression'],'code'),P(f['explanation'],'caption')]
   if section.get('figure'):
-   f=section['figure'];story += [KeepTogether([P(f['title'],'label'),Diagram(f)]),P(f['caption'],'caption')]
+   f=section['figure'];story += [KeepTogether([P(f['title'],'label'),Diagram(f),P(f['caption'],'caption')])]
   if section.get('table'):
    t=section['table'];n=len(t['columns']);widths=[CW/n]*n
    data=[[P(x,'cellh') for x in t['columns']]]+[[P(x,'cell') for x in row] for row in t['rows']]
@@ -107,7 +107,7 @@ def render_pdf(paper,path):
  for ref in paper['references']:
   title=escape(norm(ref['title'])); url=escape(ref['url'],{'"':'&quot;'})
   text=f'<a name="ref-{ref["id"]}"/>[{ref["id"]}] <link href="{url}" color="#c34420"><u>{title}</u></link>. '+escape(norm(ref['detail']))+' Accessed '+ref['accessed']+'.'
-  story += [Paragraph(text,ST['small'])]
+  story += [KeepTogether([Paragraph(text,ST['small'])])]
  story += [KeepTogether([Spacer(1,10),P('Reproducibility record','label'),P('Source: https://github.com/RevanthM/'+paper['project']+' | Evaluated implementation: '+paper['codeRef'],'small')])]
  doc.multiBuild(story)
 
