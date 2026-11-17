@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="316" viewBox="0 0 960 316" role="img" aria-labelledby="title desc">
+<title id="title">Figure 2. Reproduce an execution without a model account</title>
+<desc id="desc">A reproduction procedure for the existing synthetic artifact. It checks the saved decision path and makes no new Jev request. Hashes identify artifacts; they do not independently authenticate the underlying fictional record. [15, 16]</desc>
+<rect width="960" height="100%" rx="12" fill="#111e1b"/>
+<style>text{font-family:Arial,Helvetica,sans-serif}.label{fill:#f4f2ec;font-size:19px;font-weight:600}.detail{fill:#b5c4bc;font-size:16px}.num{fill:#ff8a62;font-size:14px;font-weight:700}</style>
+<rect x="26" y="20" width="436" height="120" rx="7" fill="#182d26" stroke="#52685d"/>
+<text class="num" x="44" y="49">01</text>
+<text class="label" x="78" y="50">Pin source</text>
+<text class="detail" x="44" y="84">Exact bridge commit and Lean toolchain</text>
+<path d="M 469 80 h 21 m -7 -6 l 7 6 -7 6" fill="none" stroke="#ff8a62" stroke-width="2"/>
+<rect x="498" y="20" width="436" height="120" rx="7" fill="#182d26" stroke="#52685d"/>
+<text class="num" x="516" y="49">02</text>
+<text class="label" x="550" y="50">Verify packet</text>
+<text class="detail" x="516" y="84">Download JSON and compare SHA-256</text>
+<rect x="26" y="162" width="436" height="120" rx="7" fill="#182d26" stroke="#52685d"/>
+<text class="num" x="44" y="191">03</text>
+<text class="label" x="78" y="192">Build and execute</text>
+<text class="detail" x="44" y="226">Run the local bridge with that packet</text>
+<path d="M 469 222 h 21 m -7 -6 l 7 6 -7 6" fill="none" stroke="#ff8a62" stroke-width="2"/>
+<rect x="498" y="162" width="436" height="120" rx="7" fill="#182d26" stroke="#52685d"/>
+<text class="num" x="516" y="191">04</text>
+<text class="label" x="550" y="192">Compare record</text>
+<text class="detail" x="516" y="226">Decision, output payload and exit code</text>
+</svg>
